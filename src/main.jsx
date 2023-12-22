@@ -5,6 +5,12 @@ import App from './App.jsx'
 import './index.css'
 import './App.css'; 
 import Home from './pages/Home';
+import Services from './pages/Services.jsx';
+import Wigs from './pages/Wigs.jsx'
+import Hair from './pages/Hair.jsx'
+
+
+
 
 // Define the accessible routes, and which components respond to which URL
 const router = createBrowserRouter([
@@ -18,6 +24,18 @@ const router = createBrowserRouter([
       element:<Home/>
 
      },
+    {
+      path: '/Wigs',
+      element: <Wigs/>,
+    },
+    {
+      path: '/Hair',
+      element: <Hair/>,
+    },
+    {
+      path: '/Services',
+      element: <Services/>,
+    },
     ]
   },
 ]);

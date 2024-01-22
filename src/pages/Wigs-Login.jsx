@@ -123,7 +123,7 @@ import Grid from '@mui/material/Grid';
                 </div>
                 <div className="input-block">
                   <label htmlFor="first-name">First Name</label>
-                  <input id="first-name" type="name" name="first_name"  onChange={handleChange}required  />
+                  <input id="first-name" type="text" name="first_name"  onChange={handleChange}required  />
                 </div>
               </fieldset>
               <button type="submit" className="btn-login">Login</button>

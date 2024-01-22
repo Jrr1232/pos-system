@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
-
-  function Hair() {
+import loginFormHandler from '../js/loginFormHandler';
+import signupFormHandler from '../js/signupFormHandler';
+  
+function Hair() {
     const [formState, setFormState] = useState({
       first_name: '',
       last_name: '',
@@ -18,66 +20,6 @@ import Grid from '@mui/material/Grid';
       });
     };
 
-    const loginFormHandler= async (event) => {
-    event.preventDefault();
-    const email = formState.email;
-    const first_name = formState.first_name
-    console.log(email)
-
-    const response = await fetch('http://localhost:3001/hair', {
-      method: 'POST',
-      body: JSON.stringify({
-          email: email,
-          first_name : first_name,
-          
-      }),
-      headers: { 'Content-Type': 'application/json' },
-  });
-
-    if (response.ok){
-      alert('Logged In')
-      document.location.replace('/Services');
-    } else {
-      alert('Failed to log in')
-      console.log(response.status)
-    }
-
-    
-    }
-  
-    const signupFormHandler = async (event) => {
-      event.preventDefault();
-      console.log(formState);
-    
-      if (formState.first_name && formState.last_name) {
-        try {
-          const response = await fetch('http://localhost:3001/Hair', {
-            method: 'POST',
-            body: JSON.stringify({
-              first_name: formState.first_name,
-              last_name: formState.last_name,
-              address: formState.address,
-              email: formState.email,
-            }),
-            headers: { 'Content-Type': 'application/json' },
-          });
-          
-          console.log('Response from server:', response); // Log the response
-    
-          if (response.ok) {
-            document.location.replace('/Services');
-          }
-    
-          alert(response.ok ? 'Signed Up' : 'Failed to sign up');
-          console.log(response.ok ? 'signed up' : 'failed to sign up');
-        } catch (error) {
-          console.error('Error occurred:', error);
-          alert('An error occurred while signing up');
-        }
-      } else {
-        alert('Please fill in all required fields');
-      }
-    };
     
     useEffect(() => {
       const switchers = document.querySelectorAll('.switcher');
@@ -114,7 +56,7 @@ import Grid from '@mui/material/Grid';
               Login
               <span className="underline"></span>
             </button>
-            <form className="form form-login" onSubmit={loginFormHandler}>
+            <form className="form form-login" onSubmit={(event) => loginFormHandler(event,formState)}>
               <fieldset>
                 <legend>Please, enter your email and password for login.</legend>
                 <div className="input-block">
@@ -123,7 +65,7 @@ import Grid from '@mui/material/Grid';
                 </div>
                 <div className="input-block">
                   <label htmlFor="first-name">First Name</label>
-                  <input id="first-name" type="name" name="first_name"  onChange={handleChange}required  />
+                  <input id="first-name" type="text" name="first_name"  onChange={handleChange}required  />
                 </div>
               </fieldset>
               <button type="submit" className="btn-login">Login</button>
@@ -134,7 +76,7 @@ import Grid from '@mui/material/Grid';
               Sign Up
               <span className="underline"></span>
             </button>
-            <form className="form form-signup" onSubmit={signupFormHandler}>
+            <form className="form form-signup" onSubmit={(event) => signupFormHandler(event,formState)}>
               <fieldset>
                 <legend>Please, enter your email, first name, last name, PIN and PIN confirmation for sign up.</legend>
                 <div className="input-block">

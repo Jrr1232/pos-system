@@ -11,10 +11,9 @@ function App() {
     <div>
       
           <Outlet /> {/* This is where your routed components will be rendered */}
-          
-    </div>
+          </div>
 
-  );
+  )
 }
 
 export default App

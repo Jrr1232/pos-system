@@ -5,6 +5,7 @@ DROP TABLE Hair_client;
 DROP TABLE Services;
 DROP TABLE Billing;
 DROP TABLE Administrator;
+DROP TABLE Sessions; 
 
 CREATE TABLE Wig_client (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -41,6 +42,7 @@ CREATE TABLE Billing   (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name varchar(30),
     last_name varchar(30),
+    email varchar(30),
     address varchar(30),
     service_code varchar(30),
     date_of_service DATE,

@@ -5,9 +5,9 @@ import App from './App.jsx'
 import './index.css'
 import './App.css'; 
 import Home from './pages/Home';
-import Services from './pages/Services.jsx';
-import Wigs from './pages/Wigs.jsx'
-import Hair from './pages/Hair.jsx'
+import Hairservices from './pages/Hair-services.jsx';
+import Wigs from './pages/Wigs-Login.jsx'
+import Hair from './pages/Hair-Login.jsx'
 
 
 
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     },
     {
       path: '/Services',
-      element: <Services/>,
+      element: <Hairservices/>,
     },
     ]
   },

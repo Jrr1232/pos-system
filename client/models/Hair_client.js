@@ -39,10 +39,7 @@ Hair_client.init(
             allowNull: true,
 
         },
-        pin: {
-            type: DataTypes.STRING, // Set a specific length for the pin
-            allowNull: false
-        },
+
         client_type: {
             type: DataTypes.STRING,
             allowNull: false
@@ -57,10 +54,7 @@ Hair_client.init(
         underscored: true,
         modelName: 'Hair_client',
         hooks: {
-            beforeCreate: async (hairClientData) => {
-                hairClientData.pin = await bcrypt.hash(hairClientData.pin, 2);
-                return hairClientData;
-            },
+
             beforeValidate: async (hairClient) => {
                 if (!hairClient.client_id) {
                     hairClient.client_id = generateRandomClientId();

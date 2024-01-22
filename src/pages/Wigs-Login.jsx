@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Grid from '@mui/material/Grid';
 
-  function Hair() {
+  function Wig() {
     const [formState, setFormState] = useState({
       first_name: '',
       last_name: '',
       address: '',
-      pin: '',
       email: ''
     });
   
@@ -21,21 +21,22 @@ import React, { useState, useEffect } from 'react';
     const loginFormHandler= async (event) => {
     event.preventDefault();
     const email = formState.email;
-    const password = formState.pin;
+    const first_name = formState.first_name
     console.log(email)
-    console.log(password)
 
-    const response = await fetch('http://localhost:3001/login', {
+    const response = await fetch('http://localhost:3001/Wigs', {
       method: 'POST',
       body: JSON.stringify({
           email: email,
-          password: password
+          first_name : first_name,
+          
       }),
       headers: { 'Content-Type': 'application/json' },
   });
 
     if (response.ok){
-      document.location.replace('/hair-services');
+      alert('Successful')
+      document.location.replace('/Services');
     } else {
       alert('Failed to log in')
       console.log(response.status)
@@ -50,22 +51,21 @@ import React, { useState, useEffect } from 'react';
     
       if (formState.first_name && formState.last_name) {
         try {
-          const response = await fetch('http://localhost:3001/hair', {
+          const response = await fetch('http://localhost:3001/Wigs', {
             method: 'POST',
             body: JSON.stringify({
               first_name: formState.first_name,
               last_name: formState.last_name,
               address: formState.address,
-              pin: formState.pin,
               email: formState.email,
             }),
             headers: { 'Content-Type': 'application/json' },
           });
-    
+          
           console.log('Response from server:', response); // Log the response
     
           if (response.ok) {
-            document.location.replace('/');
+            document.location.replace('/services');
           }
     
           alert(response.ok ? 'Signed Up' : 'Failed to sign up');
@@ -104,6 +104,8 @@ import React, { useState, useEffect } from 'react';
     
     return (
       <>
+        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={6} >
+        <Grid item id="form-container">
         <section className="forms-section">
         <h1 className="section-title"></h1>
         <div className="forms">
@@ -120,8 +122,8 @@ import React, { useState, useEffect } from 'react';
                   <input id="login-email" type="email" name="email"  onChange={handleChange}required  />
                 </div>
                 <div className="input-block">
-                  <label htmlFor="login-password">PIN</label>
-                  <input id="login-password" type="password" name="pin"  onChange={handleChange}required  />
+                  <label htmlFor="first-name">First Name</label>
+                  <input id="first-name" type="name" name="first_name"  onChange={handleChange}required  />
                 </div>
               </fieldset>
               <button type="submit" className="btn-login">Login</button>
@@ -145,11 +147,11 @@ import React, { useState, useEffect } from 'react';
                 </div>
                 <div className="input-block">
                   <label htmlFor="signup-email">E-mail</label>
-                  <input id="signup-email" type="email" name ="email" value={formState.email} onChange={handleChange}required />
+                  <input id="signup-email" type="text" name ="email" value={formState.email} onChange={handleChange}required />
                 </div>
                 <div className="input-block">
-                  <label htmlFor="signup-password">PIN</label>
-                  <input id="signup-password" type="password" name="pin"  value={formState.pin} onChange={handleChange}required />
+                  <label htmlFor="signup-password">Address</label>
+                  <input id="signup-password" type="text" name="address"  value={formState.pin} onChange={handleChange}required />
                 </div>
               </fieldset>
               <button type="submit" className="btn-signup">Sign Up</button>
@@ -157,7 +159,9 @@ import React, { useState, useEffect } from 'react';
           </div>
         </div>
       </section>
+      </Grid>
+      </Grid>
       </>
    );
   }
-export default Hair;
+export default Wig;

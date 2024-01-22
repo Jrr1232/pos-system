@@ -1,10 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection')
-class Wig_client extends Model {
+
+class Billing extends Model {
 
 }
 
-Wig_client.init(
+Billing.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -12,32 +13,42 @@ Wig_client.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        client_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true,
-
-        },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
+
+
         },
         last_name: {
             type: DataTypes.STRING,
-            allowNull: false,
-
-        }, address: {
-            type: DataTypes.STRING,
-
+            allowNull: true,
         },
         email: {
             type: DataTypes.STRING,
             allowNull: true,
 
         },
-
-        client_type: {
+        address: {
             type: DataTypes.STRING,
+            allowNull: true,
+
+        }, service_code: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+
+        },
+        date_of_service: {
+            type: DataTypes.STRING,
+            allowNull: true,
+
+        },
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        service_name: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
 
     },
@@ -47,19 +58,9 @@ Wig_client.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Wig_client',
-        hooks: {
-            beforeValidate: async (wigClient) => {
-                if (!wigClient.client_id) {
-                    wigClient.client_id = generateRandomClientId();
-                }
-
-            }
-        }
+        modelName: 'Billing',
     }
 );
-function generateRandomClientId() {
-    return Math.floor(Math.random() * 9000) + 1000;
-}
 
-module.exports = Wig_client;
+
+module.exports = Billing;

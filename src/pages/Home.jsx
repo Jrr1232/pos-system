@@ -5,36 +5,32 @@ function Home() {
   
   return (
     <>
-     <div style={{ margin: '0 auto', maxWidth: '800px' }}>
-      <form>
-        <Grid container spacing={2} id="services">
-          <Grid item xs={6} id="wigs-container">
+        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={6} id="services">
+          <Grid item id="wigs-container">
             <div id="wigs">
-            <a href="/wigs">
+            <a href="/Wigs">
               <img
               src="/public/Wigs-logos.jpeg"
               alt="Wigs"
-              style={{ width: '200%', transition: 'transform 0.3s', cursor: 'pointer' }}
+              style={{transition: 'transform 0.3s', cursor: 'pointer' }}
               className="hover-effect"
               />
             </a>
             </div>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item >
             <div id="hair">
-              <a href="/hair">
+              <a href="/Hair">
                 <img
                   src='/public/Hair-logos.jpeg'
                   alt="Hair"
-                  style={{ width: '200%', transition: 'transform 0.3s' }}
+                  style={{transition: 'transform 0.3s' }}
                   className="hover-effect"
                 />
               </a>
             </div>
           </Grid>
         </Grid>
-      </form>
-    </div>
     </>
   );
 }

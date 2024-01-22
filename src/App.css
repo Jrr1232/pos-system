@@ -1,87 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
 
-/*Landing Page */
-body {
-	background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
-	background-size: cover;
-	-webkit-animation: slidein 100s;
-	animation: slidein 100s;
-
-	-webkit-animation-fill-mode: forwards;
-	animation-fill-mode: forwards;
-
-	-webkit-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
-
-	-webkit-animation-direction: alternate;
-	animation-direction: alternate;
-}
-
-.landing-page {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	margin: auto;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(75, 75, 250, 0.3);
-	border-radius: 3px;
-}
-
-.landing-page h1 {
-	text-align: center;
-	color: white;
-	font-family: 'Source Code Pro', monospace;
-	text-transform: uppercase;
-}
-
-#landing-page {
-	margin-left: 30%;
-}
-
-#new-customer {
-	background: rgb(34, 193, 195);
-	background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
-
-
-}
-
-form {
-	margin-left: 3%;
-	width: 350px;
-	height: 350px;
-
-
-}
-
-#new-customer h1 {
-	margin-left: 3%;
-}
-
-#existing-customer h1 {
-	margin-left: 3%;
-
-}
-
-button {
-	margin-left: 5px;
-
-}
-
-#existing-customer {
-	background: rgb(63, 94, 251);
-	background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-}
-
 #wigs img {
-	margin-left: 130%;
+	margin-top: 50%;
+	height: 300px;
 }
 
 #hair img {
-	margin-left: 330%;
+	margin-top: 50%;
+	height: 300px;
 }
 
 /*Landing Page / Effects */
@@ -122,29 +48,15 @@ button {
 }
 
 body {
-	margin: 0;
 	font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-	background: #3b4465;
 }
 
-.forms-section {
-	margin-left: 125%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
 
-.section-title {
-	font-size: 32px;
-	letter-spacing: 1px;
-	color: #fff;
-}
+
 
 .forms {
 	display: flex;
 	align-items: flex-start;
-	margin-top: 30px;
 }
 
 .form-wrapper {
@@ -411,4 +323,28 @@ body {
 	background: #fbfdff;
 	box-shadow: inset 0 0 0 2px #a7e245;
 	transform: translateX(30%);
+}
+
+.service {
+	display: flex;
+	margin: 20px;
+	height: 250px;
+}
+
+.selectservice button {
+	margin: 5px;
+	margin-left: 50px;
+
+
+}
+
+.checkout {
+	margin-left: 30px;
+
+}
+
+.shoppingcart {
+	position: relative;
+	left: 1000px;
+	top: 500px;
 }

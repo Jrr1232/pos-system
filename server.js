@@ -1,7 +1,8 @@
 const path = require('path');
+
 const express = require('express');
-const cors = require('cors');
 const session = require('express-session');
+const cors = require('cors');
 const routes = require('./controllers');
 
 const sequelize = require('./client/config/connection');
@@ -9,7 +10,6 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 
 const sess = {
     secret: 'Super secret secret',
@@ -30,6 +30,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(routes);
 

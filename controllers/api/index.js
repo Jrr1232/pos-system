@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const checkoutRoutes = require("./checkoutRoutes")
-router.use("/checkout", checkoutRoutes)
+const checkoutroutes = require("./checkout-routes")
+router.use("/checkout", checkoutroutes)
 
 
 module.exports = router;

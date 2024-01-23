@@ -1,8 +1,5 @@
 import React, { useReducer } from 'react';
 
-
-
-
 const services = [
 {
    img: "highlights-logos.jpeg",

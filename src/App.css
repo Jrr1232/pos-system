@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+/*Home Page    */
 
-#wigs img {
+#wig-box img {
 	margin-top: 50%;
 	height: 300px;
 }
 
-#hair img {
+#hair-box img {
 	margin-top: 50%;
 	height: 300px;
 }
 
-/*Landing Page / Effects */
 .hover-effect:hover {
 	transform: scale(1.2);
 }
@@ -40,19 +39,12 @@
 
 }
 
-/* /hairPage */
+/* Login/SignUp Form */
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
-
-body {
-	font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-}
-
-
-
 
 .forms {
 	display: flex;
@@ -325,7 +317,44 @@ body {
 	transform: translateX(30%);
 }
 
-.service {
+/* Hair-Checkout Page (Experiment Page) */
+#services-list {
+	font-family: 'Courier New', Courier, monospace;
+	list-style: none;
+	font-size: xx-large;
+	margin-left: 5%;
+	margin-top: 10%;
+}
+
+#services-list li label:hover {
+	opacity: 0.2;
+	cursor: pointer;
+
+}
+
+#checkout-button {
+	margin-left: 40%;
+	margin-top: 5%;
+
+}
+
+#services-title{
+	margin-left: 40%;
+	margin-top: 5%;
+	color: turquoise;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: xx-large;
+}
+
+#home-button {
+	font-family: 'Courier New', Courier, monospace;
+	margin-left: 1%;
+}
+
+/* Hair-Services Page */
+
+
+.Service {
 	display: flex;
 	margin: 20px;
 	height: 250px;

@@ -5,10 +5,10 @@ import App from './App.jsx'
 import './index.css'
 import './App.css'; 
 import Home from './pages/Home';
-import Hairservices from './pages/Hair-services.jsx';
+import Hairservices from './pages/Under_construction.jsx';
 import Wigs from './pages/Wigs-Login.jsx'
 import Hair from './pages/Hair-Login.jsx'
-
+import Haircheckout from './pages/Hair-Checkout.jsx'
 
 
 
@@ -34,8 +34,11 @@ const router = createBrowserRouter([
     },
     {
       path: '/Services',
-      element: <Hairservices/>,
+      element: <Haircheckout/>,
     },
+    {
+
+    }
     ]
   },
 ]);

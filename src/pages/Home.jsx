@@ -7,7 +7,7 @@ function Home() {
     <>
         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={6} id="services">
           <Grid item id="wigs-container">
-            <div id="wigs">
+            <div id="wig-box">
             <a href="/Wigs">
               <img
               src="/public/Wigs-logos.jpeg"
@@ -19,7 +19,7 @@ function Home() {
             </div>
           </Grid>
           <Grid item >
-            <div id="hair">
+            <div id="hair-box">
               <a href="/Hair">
                 <img
                   src='/public/Hair-logos.jpeg'

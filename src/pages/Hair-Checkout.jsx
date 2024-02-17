@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
 function HairCheckout() {
   const [selectedServices, setSelectedServices] = useState([]);
@@ -31,6 +32,15 @@ function HairCheckout() {
       code: 5
     },
     ];
+    const email = Cookies.get('email');
+    const firstName = Cookies.get('first_name');
+
+    const body = {
+      cart: cart,
+      email: email,
+      first_name: firstName
+    };
+
 
   const addServiceToCart = (service) => {
     setCart([...cart, service]);
@@ -42,19 +52,28 @@ function HairCheckout() {
   };
 
   const handleCheckout = async () => {
+   try{
     const response = await fetch("http://localhost:3001/api/checkout", {
+      
       method: "POST",
-      body: JSON.stringify(cart),
+      body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" }
     });
-
+    console.log(cart)
+    console.log("clicked")
+    
     if (response.ok) {
       alert("Successfully added to Checkout");
       setCart([]);
+
     } else {
       alert("Failed to add to checkout");
+   
     }
-  };
+  } catch (error){
+    console.error("Error during fetch", error)
+  }
+};
 
   return (
     <> <a href="/">

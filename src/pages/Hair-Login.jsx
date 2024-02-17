@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import loginFormHandler from '../js/loginFormHandler';
 import signupFormHandler from '../js/signupFormHandler';
-  
+
 function Hair() {
     const [formState, setFormState] = useState({
       first_name: '',
@@ -11,6 +11,8 @@ function Hair() {
       email: ''
     });
   
+  
+
     const handleChange = (event) => {
       const { name, value } = event.target;
   
@@ -18,7 +20,7 @@ function Hair() {
         ...formState,
         [name]: value,
       });
-    };
+    }; 
 
     
     useEffect(() => {
@@ -89,11 +91,11 @@ function Hair() {
                 </div>
                 <div className="input-block">
                   <label htmlFor="signup-email">E-mail</label>
-                  <input id="signup-email" type="text" name ="email" value={formState.email} onChange={handleChange}required />
+                  <input id="signup-email" type="email" name ="email" value={formState.email} onChange={handleChange}required />
                 </div>
                 <div className="input-block">
-                  <label htmlFor="signup-password">Address</label>
-                  <input id="signup-password" type="text" name="address"  value={formState.pin} onChange={handleChange}required />
+                  <label htmlFor="signup-address">Address</label>
+                  <input id="signup-address" type="text" name="address"  value={formState.pin} onChange={handleChange}required />
                 </div>
               </fieldset>
               <button type="submit" className="btn-signup">Sign Up</button>

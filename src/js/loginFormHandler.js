@@ -1,10 +1,17 @@
+import Cookies from 'js-cookie';
+
+
 const loginFormHandler = async (event, formState) => {
     try {
         event.preventDefault();
 
-        const { email, first_name, last_name, address } = formState;
+        const expirationDate = new Date();
+        expirationDate.setTime(expirationDate.getTime() + (10 * 60 * 1000));
 
-        console.log(email);
+        const { email, first_name } = formState;
+
+        Cookies.set('email', email, { expires: expirationDate });
+        Cookies.set('first_name', first_name, { expires: expirationDate });
 
         const response = await fetch('http://localhost:3001/hair', {
             method: 'POST',
@@ -19,7 +26,7 @@ const loginFormHandler = async (event, formState) => {
             alert('Logged In');
             document.location.replace('/Services');
         } else {
-            alert('Failed to log in');
+            alert('User Exist. Login to Existing User or Sign Up.');
             console.log(response.status);
         }
     } catch (error) {

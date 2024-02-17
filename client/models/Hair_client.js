@@ -1,11 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection')
-const bcrypt = require('bcrypt')
 
 class Hair_client extends Model {
-    checkPassword(loginPw) {
-        return bcrypt.compareSync(loginPw, this.pin);
-    }
+
 }
 
 Hair_client.init(

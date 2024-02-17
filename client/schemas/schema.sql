@@ -47,7 +47,9 @@ CREATE TABLE Billing   (
     service_code varchar(30),
     date_of_service DATE,
     price INTEGER,
-    service_name varchar(30)
+    service_name varchar(30),
+    client_id INTEGER,
+
 );
 
 CREATE TABLE Administrator   (

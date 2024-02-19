@@ -55,6 +55,14 @@ import Cookies from 'js-cookie';
     const signupFormHandler = async (event) => {
       event.preventDefault();
       console.log(formState);
+      
+      const expirationDate = new Date();
+      expirationDate.setTime(expirationDate.getTime() + (10 * 60 * 1000));
+  
+      const { email, first_name } = formState;
+  
+      Cookies.set('email', email, { expires: expirationDate });
+      Cookies.set('first_name', first_name, { expires: expirationDate });
     
       if (formState.first_name && formState.last_name) {
         try {

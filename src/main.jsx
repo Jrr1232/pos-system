@@ -10,7 +10,7 @@ import Wigs from './pages/Wigs-Login.jsx'
 import Hair from './pages/Hair-Login.jsx'
 import Haircheckout from './pages/Hair-Checkout.jsx'
 import WigCheckout from './pages/Wig-Checkout.jsx'
-
+import WigLogout from './pages/Wig-Logout.jsx';
 
 // Define the accessible routes, and which components respond to which URL
 const router = createBrowserRouter([
@@ -43,6 +43,10 @@ const router = createBrowserRouter([
     {
       path: '/logout',
       element: <Logout/>,
+    },
+    {
+      path: '/logout01',
+      element: <WigLogout/>,
     }
     ]
   },

@@ -338,7 +338,7 @@
 
 }
 
-#services-title{
+#services-title {
 	margin-left: 40%;
 	margin-top: 5%;
 	color: turquoise;
@@ -376,4 +376,18 @@
 	position: relative;
 	left: 1000px;
 	top: 500px;
+}
+
+/* Logout */
+
+#logout {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: x-large;
+	margin-top: 20%;
+}
+
+#continue-shopping {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: x-large;
+	margin-top: 20%;
 }

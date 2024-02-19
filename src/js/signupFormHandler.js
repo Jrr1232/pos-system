@@ -13,7 +13,7 @@ const signupFormHandler = async (event, formState) => {
 
     if (formState.first_name && formState.last_name) {
         try {
-            const response = await fetch('http://localhost:3001/Hair', {
+            const response = await fetch('http://localhost:3001/hair', {
                 method: 'POST',
                 body: JSON.stringify({
                     first_name: formState.first_name,

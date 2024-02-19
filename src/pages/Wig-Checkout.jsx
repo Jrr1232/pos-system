@@ -2,35 +2,35 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { Navigate, useNavigate } from 'react-router-dom'; 
 
-function HairCheckout() {
+function WigCheckout() {
   const [cart, setCart] = useState([]);
   const navigateTo = useNavigate();
 
   const services = [
     {
        name: 'Color/Highlights',
-       price: 5,
-       code: 1
+       price: 10,
+       code: 11
     },
     {
-       name: 'Blow dry with Hair Styling',
-       price: 120,
-       code: 2
+       name: 'Blow dry with Wig Styling',
+       price: 150,
+       code: 12
     },
     {
        name: 'Blow dry',
-       price: 5,
-       code: 3
+       price: 15,
+       code: 13
     },
     {
-      name: 'Hair Styling',
-      price: 5,
-      code: 4
+      name: 'Wig Styling',
+      price: 35,
+      code: 14
     },
     {
       name: 'Wash',
-      price: 5,
-      code: 5
+      price: 15,
+      code: 15
     },
     ];
     const email = Cookies.get('email');
@@ -82,7 +82,7 @@ function HairCheckout() {
     <> <a href="/">
    <p id ="home-button"> Home </p>
   </a>
-    <p id="services-title">Hair Services</p>
+    <p id="services-title">Wig Services</p>
       <ul id="services-list">
         {services.map(service => (
           <li key={service.name}>
@@ -107,4 +107,4 @@ function HairCheckout() {
   );
 }
 
-export default HairCheckout;
+export default WigCheckout;

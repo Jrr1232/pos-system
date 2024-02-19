@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
+import Cookies from 'js-cookie';
 
   function Wig() {
     const [formState, setFormState] = useState({
@@ -20,11 +21,17 @@ import Grid from '@mui/material/Grid';
 
     const loginFormHandler= async (event) => {
     event.preventDefault();
-    const email = formState.email;
-    const first_name = formState.first_name
-    console.log(email)
+    
+    const expirationDate = new Date();
+    expirationDate.setTime(expirationDate.getTime() + (10 * 60 * 1000));
 
-    const response = await fetch('http://localhost:3001/Wigs', {
+    const { email, first_name } = formState;
+
+    Cookies.set('email', email, { expires: expirationDate });
+    Cookies.set('first_name', first_name, { expires: expirationDate });
+
+
+    const response = await fetch('http://localhost:3001/wigs', {
       method: 'POST',
       body: JSON.stringify({
           email: email,
@@ -35,10 +42,10 @@ import Grid from '@mui/material/Grid';
   });
 
     if (response.ok){
-      alert('Successful')
-      document.location.replace('/Services');
+      alert('Logged In.')
+      document.location.replace('/services01');
     } else {
-      alert('Failed to log in')
+      alert('User not found.')
       console.log(response.status)
     }
 
@@ -51,7 +58,7 @@ import Grid from '@mui/material/Grid';
     
       if (formState.first_name && formState.last_name) {
         try {
-          const response = await fetch('http://localhost:3001/Wigs', {
+          const response = await fetch('http://localhost:3001/wigs', {
             method: 'POST',
             body: JSON.stringify({
               first_name: formState.first_name,
@@ -65,7 +72,7 @@ import Grid from '@mui/material/Grid';
           console.log('Response from server:', response); // Log the response
     
           if (response.ok) {
-            document.location.replace('/services');
+            document.location.replace('/services01');
           }
     
           alert(response.ok ? 'Signed Up' : 'Failed to sign up');

@@ -2,14 +2,18 @@ const router = require('express').Router();
 const Wig_client = require('../client/models/Wig_client');
 const Hair_client = require('../client/models/Hair_client');
 
-router.post('/Hair', async (req, res) => {
+router.post('/hair', async (req, res) => {
     try {
         const userData = await Hair_client.findOne({
-            where: { email: req.body.email }
+            where: {
+                email: req.body.email,
+                first_name: req.body.first_name
+            }
         });
 
         if (userData) {
-            return res.status(400).json({ message: 'A user with this email already exists.' });
+            res.redirect('http://localhost:5173/services');
+
         } else {
             const newHairClient = await Hair_client.create({
                 first_name: req.body.first_name,
@@ -32,60 +36,40 @@ router.post('/Hair', async (req, res) => {
     }
 });
 
-module.exports = router;
 
 
+router.post('/wigs', async (req, res) => {
+    try {
+        const userData = await Wig_client.findOne({
+            where: {
+                email: req.body.email,
+                first_name: req.body.first_name
+            }
+        });
 
-// router.post('/Wigs', async (req, res) => {
-//     try {
-//         // Check if the user is already logged in
-//         if (req.session.logged_in) {
-//             console.log('Session already exists');
-//             return res.json({ message: 'Session already exists' });
-//         }
+        if (userData) {
+            res.redirect('http://localhost:5173/services01');
+        } else {
+            const newWigClient = await Wig_client.create({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                address: req.body.address,
+                email: req.body.email,
+                client_type: 'wig'
+            });
 
-//         // Check if the request has an email (assuming this is a common field)
-//         if (req.body.email) {
-//             // Attempt to find an existing Hair_client
-//             const wigClientData = await Wig_client.findOne({
-//                 where: {
-//                     email: req.body.email,
-//                 },
-//             });
+            req.session.logged_in = true;
+            req.session.email = req.body.email;
+            req.session.first_name = req.body.first_name;
+            req.session.save();
 
-//             if (!wigClientData) {
-//                 // If no existing Hair_client is found, create a new one
-//                 const newWigClient = await Wig_client.create({
-//                     first_name: req.body.first_name,
-//                     last_name: req.body.last_name,
-//                     address: req.body.address,
-//                     email: req.body.email,
-//                     client_type: 'wig'
-//                 });
+            res.json(newWigClient);
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
-//                 // Set session properties for the new user
-//                 req.session.logged_in = true;
-//                 req.session.email = newWigClient.email;
-//                 req.session.first_name = newWigClient.first_name;
-
-//                 console.log('New Hair_client created and logged in');
-//                 return res.json({ user: newWigClient, message: 'New user created and logged in' });
-//             } else {
-//                 // If an existing Hair_client is found, set session properties for the existing user
-//                 req.session.logged_in = true;
-//                 req.session.email = wigClientData.email;
-//                 req.session.first_name = wigClientData.first_name;
-
-//                 console.log('Existing user logged in');
-//                 return res.json({ user: wigClientData, message: 'Existing user logged in' });
-//             }
-//         } else {
-//             return res.status(400).json({ message: 'Email is required for this operation' });
-//         }
-//     } catch (err) {
-//         console.error(err);
-//         return res.status(500).json(err);
-//     }
-// });
 
 module.exports = router;

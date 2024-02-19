@@ -24,9 +24,9 @@ const loginFormHandler = async (event, formState) => {
 
         if (response.ok) {
             alert('Logged In');
-            document.location.replace('/Services');
+            document.location.replace('/services');
         } else {
-            alert('User Exist. Login to Existing User or Sign Up.');
+            alert('User not found.');
             console.log(response.status);
         }
     } catch (error) {
@@ -34,5 +34,6 @@ const loginFormHandler = async (event, formState) => {
         alert('An error occurred while logging in');
     }
 };
+
 
 export default loginFormHandler;

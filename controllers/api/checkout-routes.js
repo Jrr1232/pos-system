@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Billing = require("../../client/models/Billing");
-const Cookies = require('js-cookie');
 const Hair_client = require("../../client/models/Hair_client");
+const Wig_client = require("../../client/models/Wig_client");
 
 router.post("/", async (req, res) => {
     try {
@@ -11,14 +11,33 @@ router.post("/", async (req, res) => {
         const price = firstItem.price;
         const code = firstItem.code;
 
-        const userData = await Hair_client.findOne({
+        let userData;
+        let client_address;
+        let client_last_name;
+        let client_id;
+        let client_type;
+
+        // Check Hair_client first
+        userData = await Hair_client.findOne({
             where: { email: req.body.email }
         });
 
-        const client_address = userData.dataValues.address
-        const client_last_name = userData.dataValues.last_name
-        const client_id = userData.dataValues.client_id
-        const client_type = userData.dataValues.client_type
+        // If not found in Hair_client, check Wig_client
+        if (!userData) {
+            userData = await Wig_client.findOne({
+                where: { email: req.body.email }
+            });
+        }
+
+        if (userData) {
+            client_address = userData.address;
+            client_last_name = userData.last_name;
+            client_id = userData.client_id;
+            client_type = userData.client_type;
+        } else {
+            // If neither Hair_client nor Wig_client found, return an error
+            return res.status(404).json({ message: 'Client not found' });
+        }
 
         const billData = await Billing.create({
             client_id: client_id,

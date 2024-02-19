@@ -5,11 +5,11 @@ import App from './App.jsx'
 import './index.css'
 import './App.css'; 
 import Home from './pages/Home';
-import Hairservice from './pages/Under_construction.jsx';
+import Logout from './pages/Logout.jsx'
 import Wigs from './pages/Wigs-Login.jsx'
 import Hair from './pages/Hair-Login.jsx'
 import Haircheckout from './pages/Hair-Checkout.jsx'
-
+import WigCheckout from './pages/Wig-Checkout.jsx'
 
 
 // Define the accessible routes, and which components respond to which URL
@@ -25,19 +25,24 @@ const router = createBrowserRouter([
 
      },
     {
-      path: '/Wigs',
+      path: '/wigs',
       element: <Wigs/>,
     },
     {
-      path: '/Hair',
+      path: '/hair',
       element: <Hair/>,
     },
     {
-      path: '/Services',
+      path: '/services',
       element: <Haircheckout/>,
     },
     {
-
+      path: '/services01',
+      element: <WigCheckout/>,
+    },
+    {
+      path: '/logout',
+      element: <Logout/>,
     }
     ]
   },

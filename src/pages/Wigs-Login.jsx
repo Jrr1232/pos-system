@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
   function Wig() {
     const [formState, setFormState] = useState({
+      username:'',
       first_name: '',
       last_name: '',
       address: '',
@@ -25,7 +26,7 @@ import Cookies from 'js-cookie';
     const expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + (10 * 60 * 1000));
 
-    const { email, first_name } = formState;
+    const { email, first_name, username } = formState;
 
     Cookies.set('email', email, { expires: expirationDate });
     Cookies.set('first_name', first_name, { expires: expirationDate });
@@ -35,7 +36,7 @@ import Cookies from 'js-cookie';
       method: 'POST',
       body: JSON.stringify({
           email: email,
-          first_name : first_name,
+          username: username,
           
       }),
       headers: { 'Content-Type': 'application/json' },
@@ -69,6 +70,7 @@ import Cookies from 'js-cookie';
           const response = await fetch('http://localhost:3001/wigs', {
             method: 'POST',
             body: JSON.stringify({
+              username: formState.username,
               first_name: formState.first_name,
               last_name: formState.last_name,
               address: formState.address,
@@ -131,14 +133,14 @@ import Cookies from 'js-cookie';
             </button>
             <form className="form form-login" onSubmit={loginFormHandler}>
               <fieldset>
-                <legend>Please, enter your email and password for login.</legend>
+                <legend>Please, enter your email or username for login.</legend>
                 <div className="input-block">
                   <label htmlFor="login-email">E-mail</label>
                   <input id="login-email" type="email" name="email"  onChange={handleChange}required  />
                 </div>
                 <div className="input-block">
-                  <label htmlFor="first-name">First Name</label>
-                  <input id="first-name" type="text" name="first_name"  onChange={handleChange}required  />
+                  <label htmlFor="username">Username</label>
+                  <input id="username" type="text" name="username"  onChange={handleChange}required  />
                 </div>
               </fieldset>
               <button type="submit" className="btn-login">Login</button>
@@ -152,6 +154,10 @@ import Cookies from 'js-cookie';
             <form className="form form-signup" onSubmit={signupFormHandler}>
               <fieldset>
                 <legend>Please, enter your email, first name, last name, PIN and PIN confirmation for sign up.</legend>
+                <div className="input-block">
+                  <label htmlFor="signup-username">Username</label>
+                  <input id="signup-username" type="text" name="username" value={formState.username} onChange={handleChange}required />
+                </div>
                 <div className="input-block">
                   <label htmlFor="signup-first_name">First name</label>
                   <input id="signup-first_name" type="text" name="first_name" value={formState.first_name} onChange={handleChange}required />

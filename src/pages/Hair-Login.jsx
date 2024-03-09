@@ -5,6 +5,7 @@ import signupFormHandler from '../js/signupFormHandler';
 
 function Hair() {
     const [formState, setFormState] = useState({
+      username:'',
       first_name: '',
       last_name: '',
       address: '',
@@ -60,14 +61,14 @@ function Hair() {
             </button>
             <form className="form form-login" onSubmit={(event) => loginFormHandler(event,formState)}>
               <fieldset>
-                <legend>Please, enter your email and password for login.</legend>
+                <legend>Please, enter your email or username for login.</legend>
                 <div className="input-block">
                   <label htmlFor="login-email">E-mail</label>
                   <input id="login-email" type="email" name="email"  onChange={handleChange}required  />
                 </div>
                 <div className="input-block">
-                  <label htmlFor="first-name">First Name</label>
-                  <input id="first-name" type="text" name="first_name"  onChange={handleChange}required  />
+                  <label htmlFor="username">Username</label>
+                  <input id="username" type="text" name="username"  onChange={handleChange}required  />
                 </div>
               </fieldset>
               <button type="submit" className="btn-login">Login</button>
@@ -80,7 +81,11 @@ function Hair() {
             </button>
             <form className="form form-signup" onSubmit={(event) => signupFormHandler(event,formState)}>
               <fieldset>
-                <legend>Please, enter your email, first name, last name, PIN and PIN confirmation for sign up.</legend>
+                <legend>Please, enter an email, username, first name, last name, PIN and PIN confirmation for sign up.</legend>
+                <div className="input-block">
+                  <label htmlFor="signup-username">Username</label>
+                  <input id="signup-username" type="text" name="username" value={formState.username} onChange={handleChange}required />
+                </div>
                 <div className="input-block">
                   <label htmlFor="signup-first_name">First name</label>
                   <input id="signup-first_name" type="text" name="first_name" value={formState.first_name} onChange={handleChange}required />

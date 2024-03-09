@@ -10,6 +10,7 @@ DROP TABLE Sessions;
 CREATE TABLE Wig_client (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     client_id INTEGER,
+    username varchar(30),
     first_name varchar(30),
     last_name varchar(30),
     address varchar(30),
@@ -22,6 +23,7 @@ CREATE TABLE Wig_client (
 CREATE TABLE Hair_client (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     client_id INTEGER,
+    username varchar(30),
     first_name varchar(30),
     last_name varchar(30),
     address varchar(30),

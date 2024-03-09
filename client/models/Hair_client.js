@@ -19,6 +19,10 @@ Hair_client.init(
             unique: true,
 
         },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,

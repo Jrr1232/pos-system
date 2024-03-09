@@ -8,7 +8,7 @@ const loginFormHandler = async (event, formState) => {
         const expirationDate = new Date();
         expirationDate.setTime(expirationDate.getTime() + (10 * 60 * 1000));
 
-        const { email, first_name } = formState;
+        const { email, first_name, username } = formState;
 
         Cookies.set('email', email, { expires: expirationDate });
         Cookies.set('first_name', first_name, { expires: expirationDate });
@@ -17,7 +17,7 @@ const loginFormHandler = async (event, formState) => {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
-                first_name: first_name,
+                username: username,
             }),
             headers: { 'Content-Type': 'application/json' },
         });

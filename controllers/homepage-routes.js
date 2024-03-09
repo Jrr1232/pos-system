@@ -4,10 +4,24 @@ const Hair_client = require('../client/models/Hair_client');
 
 router.post('/hair', async (req, res) => {
     try {
+
+
+        const userDatas = await Hair_client.findAll({
+            where: {
+                email: req.body.email,
+            }
+
+        });
+        if (userDatas.length > 0) { // Check if userDatas has any elements
+            console.log(userDatas);
+        } else {
+            console.log("no data found");
+        }
+
         const userData = await Hair_client.findOne({
             where: {
                 email: req.body.email,
-                first_name: req.body.first_name
+                username: req.body.username
             }
         });
 
@@ -16,6 +30,7 @@ router.post('/hair', async (req, res) => {
 
         } else {
             const newHairClient = await Hair_client.create({
+                username: req.body.username,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 address: req.body.address,
@@ -28,7 +43,7 @@ router.post('/hair', async (req, res) => {
             req.session.first_name = req.body.first_name;
             req.session.save();
 
-            res.json(newHairClient);
+            res.json({ newHairClient, userDatas });
         }
     } catch (err) {
         console.error(err);
@@ -43,7 +58,7 @@ router.post('/wigs', async (req, res) => {
         const userData = await Wig_client.findOne({
             where: {
                 email: req.body.email,
-                first_name: req.body.first_name
+                username: req.body.username
             }
         });
 
@@ -51,6 +66,7 @@ router.post('/wigs', async (req, res) => {
             res.redirect('http://localhost:5173/services01');
         } else {
             const newWigClient = await Wig_client.create({
+                username: req.body.username,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 address: req.body.address,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { Navigate, useNavigate } from 'react-router-dom'; 
+import Grid from '@mui/material/Grid';
 
 function WigCheckout() {
   const [cart, setCart] = useState([]);
@@ -48,7 +49,7 @@ function WigCheckout() {
   };
 
   const removeServiceFromCart = (service) => {
-    const updatedCart = cart.filter(item => item !== service);
+    const updatedCart = cart.filter(item => item.code !== service.code);
     setCart(updatedCart);
   };
 
@@ -78,33 +79,53 @@ function WigCheckout() {
   }
 };
 
+const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+
   return (
-    <> <a href="/">
-   <p id ="home-button"> Home </p>
-  </a>
+    
+    <>
+    <a href="/">
+      <p id="home-button"> Home </p>
+    </a>
     <p id="services-title">Wig Services</p>
-      <ul id="services-list">
-        {services.map(service => (
-          <li key={service.name}>
-            <label>
-              <input
-                type="checkbox"
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    addServiceToCart(service);
-                  } else {
-                    removeServiceFromCart(service);
-                  }
-                }}
-              />
-              {service.name}
-            </label>
-          </li>
+    <Grid container alignItems="center" justifyContent="space-around">   
+    <Grid item id ="grid-services">
+    <ul id="services-list">
+      {services.map(service => (
+        <li key={service.name}>
+          <label>
+            <input
+              type="checkbox"
+              onChange={(e) => {
+                if (e.target.checked) {
+                  addServiceToCart(service);
+                } else {
+                  removeServiceFromCart(service);
+                }
+              }}
+            />
+            {service.name}
+          </label>
+        </li>
+      ))}
+    </ul>
+    </Grid>
+   <Grid item id ="grid-cart"> 
+    {cart.length > 0 && (
+      <ul>
+        <p>Total Price: ${totalPrice}</p>
+        {cart.map((item, index) => (
+          <li key={index}>{item.name}: ${item.price}</li>
         ))}
       </ul>
-      <button id="checkout-button" onClick={handleCheckout}>Checkout</button>
-    </>
-  );
+    )}
+    </Grid>
+    </Grid>
+    <button id="checkout-button" onClick={handleCheckout}>Checkout</button>
+    
+   
+  </>
+);
 }
 
 export default WigCheckout;

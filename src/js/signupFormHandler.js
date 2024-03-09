@@ -16,6 +16,7 @@ const signupFormHandler = async (event, formState) => {
             const response = await fetch('http://localhost:3001/hair', {
                 method: 'POST',
                 body: JSON.stringify({
+                    username: formState.username,
                     first_name: formState.first_name,
                     last_name: formState.last_name,
                     address: formState.address,
